@@ -1,5 +1,6 @@
 package dev.shivam.productservice.controllers;
 
+import dev.shivam.productservice.dtos.GenericProductDTO;
 import dev.shivam.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +20,7 @@ public class ProductController {
     }
 
     @GetMapping("{id}")
-    public String getProductById(@PathVariable("id") Long id) {
+    public GenericProductDTO getProductById(@PathVariable("id") Long id) {
         return productService.getProductById(id);
     }
 

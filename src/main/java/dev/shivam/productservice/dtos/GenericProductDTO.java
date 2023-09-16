@@ -1,15 +1,15 @@
 package dev.shivam.productservice.dtos;
 
+import dev.shivam.productservice.models.Category;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class FakeStoreProductDTO {
-    private Long id;
+@Setter
+public class GenericProductDTO {
     private String title;
-    private String category;
-    private double price;
     private String description;
     private String image;
+    private String category;
+    private double price;
 }
