@@ -12,4 +12,9 @@ public class SelfProductService implements ProductService {
 //        return "Hello from SelfProduct service";
         return null;
     }
+
+    @Override
+    public GenericProductDTO createProduct(GenericProductDTO product) {
+        return null;
+    }
 }

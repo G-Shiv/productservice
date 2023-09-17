@@ -6,4 +6,6 @@ import dev.shivam.productservice.models.Product;
 public interface ProductService {
 
     GenericProductDTO getProductById(Long id);
+
+    GenericProductDTO createProduct(GenericProductDTO product);
 }

@@ -11,8 +11,11 @@ import org.springframework.web.client.RestTemplate;
 @Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
-    @Value("${productservice.url}")
-    private String productServiceURL;
+    @Value("${productsearch.url}")
+    private String productSearchURL;
+
+    @Value("${product.url}")
+    private String productURL;
 
     private RestTemplateBuilder restTemplateBuilder;
 
@@ -24,7 +27,7 @@ public class FakeStoreProductService implements ProductService {
     public GenericProductDTO getProductById(Long id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDTO> response =
-                restTemplate.getForEntity(productServiceURL, FakeStoreProductDTO.class, id);
+                restTemplate.getForEntity(productSearchURL, FakeStoreProductDTO.class, id);
 
         FakeStoreProductDTO fakeStoreProductDTO = response.getBody();
         GenericProductDTO genericProductDTO = new GenericProductDTO();
@@ -36,5 +39,14 @@ public class FakeStoreProductService implements ProductService {
         genericProductDTO.setImage(fakeStoreProductDTO.getImage());
 
         return genericProductDTO;
+    }
+
+    @Override
+    public GenericProductDTO createProduct(GenericProductDTO product) {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<GenericProductDTO> response =
+                restTemplate.postForEntity(productURL, product, GenericProductDTO.class);
+
+        return response.getBody();
     }
 }
