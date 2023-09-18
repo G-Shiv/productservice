@@ -3,11 +3,9 @@ package dev.shivam.productservice.controllers;
 import dev.shivam.productservice.dtos.GenericProductDTO;
 import dev.shivam.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -36,13 +34,13 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public void updateProductById() {
-
+    public GenericProductDTO updateProductById(@RequestBody GenericProductDTO product, @PathVariable("id") Long id) {
+        return productService.updateProductById(product, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProductById() {
-
+    public GenericProductDTO deleteProductById(@PathVariable("id") Long id) {
+        return productService.deleteProduct(id);
     }
 
 }
